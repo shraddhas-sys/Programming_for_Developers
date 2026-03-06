@@ -15,7 +15,6 @@ def max_repeater_coverage(points):
             dx = points[j][0] - points[i][0]
             dy = points[j][1] - points[i][1]
             
-            # Handling overlapping points
             if dx == 0 and dy == 0:
                 duplicate += 1
                 continue

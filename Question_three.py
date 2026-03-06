@@ -4,7 +4,6 @@ def max_profit_trading(max_trades, daily_prices):
 
     n = len(daily_prices)
     
-    # Can trade 
     if max_trades >= n // 2:
         profit = 0
         for i in range(1, n):
@@ -15,7 +14,6 @@ def max_profit_trading(max_trades, daily_prices):
     dp = [[0] * n for _ in range(max_trades + 1)]
 
     for t in range(1, max_trades + 1):
-        # max_diff 
         max_diff = -daily_prices[0]
         for d in range(1, n):
             dp[t][d] = max(dp[t][d-1], daily_prices[d] + max_diff)

@@ -12,14 +12,12 @@ def get_max_coverage(locations):
         for j in range(i + 1, n):
             dx = locations[j][0] - locations[i][0]
             dy = locations[j][1] - locations[i][1]
-            
-            # Use GCD to handle slope 
+        
             common = math.gcd(dx, dy)
             slope = (dy // common, dx // common)
             
             slopes[slope] = slopes.get(slope, 0) + 1
             
-        # Update max coverage 
         if slopes:
             current_max = max(slopes.values()) + 1
             overall_max = max(overall_max, current_max)

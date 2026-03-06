@@ -6,7 +6,6 @@ import time
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
-# Api Configuration
 API_KEY = "55fd2b96301011e8e072662c24910583"
 CITIES = ["Kathmandu", "Pokhara", "Lalitpur", "Biratnagar", "Bharatpur"]
 
@@ -77,7 +76,6 @@ class WeatherApp:
         self.graph_frame = tk.Frame(root,bg=self.bg_color)
         self.graph_frame.pack(fill="both",expand=True)
 
-    # Weather fetch
     def fetch_weather(self, city):
         try:
             url = f"https://api.openweathermap.org/data/2.5/weather?q={city},NP&appid={API_KEY}&units=metric"
@@ -123,7 +121,6 @@ class WeatherApp:
         self.tree.insert("",tk.END,
                          values=(city,temp,desc))
 
-    # Multi thread
     def start_threads(self):
 
         self.tree.delete(*self.tree.get_children())

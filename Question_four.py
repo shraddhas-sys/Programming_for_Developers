@@ -1,13 +1,11 @@
 import math
 
-# Hourly demand 
 hourly_demand = {
     6: {'A': 20, 'B': 15, 'C': 25},
     7: {'A': 22, 'B': 16, 'C': 28},
     8: {'A': 24, 'B': 18, 'C': 30}
 }
 
-# Energy source constraints
 sources = {
     'Solar':  {'capacity': 50, 'available_hours': range(6, 19), 'cost': 1.0},
     'Hydro':  {'capacity': 40, 'available_hours': range(0, 25), 'cost': 1.5},
@@ -33,8 +31,7 @@ def allocate_energy(hour, demand):
             allocation[src_name][district] = amount
             remaining_demand[district] -= amount
             src_capacity -= amount
-
-    # Check demand
+            
     for district, req_orig in demand.items():
         supplied = sum(allocation[src][district] for src in sources)
         if supplied < req_orig * (1 - tolerance):
@@ -47,8 +44,7 @@ def calculate_total_cost(allocation):
     for src_name, dist_alloc in allocation.items():
         total += sum(dist_alloc.values()) * sources[src_name]['cost']
     return total
-
-# Display results 
+ 
 results = {}
 for hour, demand in hourly_demand.items():
     alloc = allocate_energy(hour, demand)

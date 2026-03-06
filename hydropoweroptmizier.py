@@ -13,7 +13,6 @@ class HydropowerOptimizer:
             if not node:
                 return 0
             
-            # Max power 
             left_max = max(dfs(node.left), 0)
             right_max = max(dfs(node.right), 0)
             current_path_sum = node.val + left_max + right_max

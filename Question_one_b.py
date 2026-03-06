@@ -1,6 +1,5 @@
 def segment_marketing_query(user_query, marketing_keywords_dictionary):
     word_set = set(marketing_keywords_dictionary)
-    # Memoization 
     memo = {}
 
     def backtrack(remaining):
@@ -17,8 +16,7 @@ def segment_marketing_query(user_query, marketing_keywords_dictionary):
             
             if prefix in word_set:
                 suffix_segments = backtrack(remaining[i:])
-                for segment in suffix_segments:
-                    # Glue the current 
+                for segment in suffix_segments: 
                     combined = (prefix + " " + segment).strip()
                     current_results.append(combined)
         
@@ -26,8 +24,6 @@ def segment_marketing_query(user_query, marketing_keywords_dictionary):
         return current_results
 
     return backtrack(user_query)
-
-# Verification Examples 
 
 ex1_query = "nepaltrekkingguide" 
 ex1_dict = ["nepal", "trekking", "guide", "nepaltrekking"]
