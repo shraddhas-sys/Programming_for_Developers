@@ -19,8 +19,7 @@ def max_repeater_coverage(points):
             if dx == 0 and dy == 0:
                 duplicate += 1
                 continue
-            
-            # Simplify slope using GCD to avoid float precision issues
+
             common = math.gcd(dx, dy)
             slope = (dx // common, dy // common)
             
@@ -31,6 +30,5 @@ def max_repeater_coverage(points):
         
     return max_points
 
-# Example 2 Input
 customer_locations = [[1,1],[3,2],[5,3],[4,1],[2,3],[1,4]]
 print(f"Maximum households covered: {max_repeater_coverage(customer_locations)}")

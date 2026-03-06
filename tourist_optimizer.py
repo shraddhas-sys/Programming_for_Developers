@@ -39,7 +39,7 @@ def brute_force_optimization(data, budget, available_time, interest):
     best_combination = []
     max_spots = 0
     
-    # Check every possible combination
+    # Possible combination
     for i in range(1, len(data) + 1):
         for combo in itertools.combinations(data, i):
             c_cost = sum(s['entry_fee'] for s in combo)
@@ -108,7 +108,7 @@ def show_path_map(spots):
     plt.grid(True, linestyle='--', alpha=0.6)
     plt.show()
 
-# Setting up the main window with custom color theme
+# Setting up the main window 
 BG_COLOR = "#FFFDD0"      
 HEADER_COLOR = "#6F4E37"  
 BTN_COLOR = "#E6E6FA"     

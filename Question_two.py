@@ -24,7 +24,7 @@ def max_power_generation(root):
     calculate_gain(root)
     return max_generation
 
-# High-cost root 
+# High cost root 
 root_ex2 = PlantNode(-10)
 root_ex2.left = PlantNode(9)
 root_ex2.right = PlantNode(20)

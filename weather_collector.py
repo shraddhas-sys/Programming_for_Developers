@@ -6,7 +6,7 @@ import time
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
-# API CONFIGURATION
+# Api Configuration
 API_KEY = "55fd2b96301011e8e072662c24910583"
 CITIES = ["Kathmandu", "Pokhara", "Lalitpur", "Biratnagar", "Bharatpur"]
 

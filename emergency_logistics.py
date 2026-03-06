@@ -4,7 +4,7 @@ from collections import deque
 
 class EmergencyLogistics:
     def __init__(self):
-        # Data based on assignment tables
+        # Data based 
         self.safety_graph = {
             'KTM': {'JA': 0.90, 'JB': 0.80},
             'JA': {'KTM': 0.90, 'PH': 0.95, 'BS': 0.70},
@@ -61,7 +61,7 @@ class EmergencyLogistics:
         total_max_flow = 0
         path_count = 1
         
-        # BFS implementation
+        # Implementation
         while True:
             parent = {source: None}
             queue = deque([source])
@@ -87,7 +87,7 @@ class EmergencyLogistics:
 
             print(f"Augmenting Path {path_count}: {current_path} | Flow Added: {path_flow}")
             
-            # Update residual graph
+            # Graph
             total_max_flow += path_flow
             v = sink
             while v != source:
