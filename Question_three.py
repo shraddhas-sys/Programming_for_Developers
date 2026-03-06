@@ -1,26 +1,26 @@
 def max_profit_trading(max_trades, daily_prices):
-    if not daily_prices or max_trades == 0:
-        return 0
-
     n = len(daily_prices)
     
-    if max_trades >= n // 2:
-        profit = 0
-        for i in range(1, n):
-            if daily_prices[i] > daily_prices[i-1]:
-                profit += daily_prices[i] - daily_prices[i-1]
-        return profit
+    if n < 2 or max_trades == 0:
+        return 0
 
+    # DP table
     dp = [[0] * n for _ in range(max_trades + 1)]
 
-    for t in range(1, max_trades + 1):
+    for i in range(1, max_trades + 1):
         max_diff = -daily_prices[0]
-        for d in range(1, n):
-            dp[t][d] = max(dp[t][d-1], daily_prices[d] + max_diff)
-            max_diff = max(max_diff, dp[t-1][d] - daily_prices[d])
+        
+        for j in range(1, n):
+            dp[i][j] = max(dp[i][j-1], daily_prices[j] + max_diff)
+            
+            # Update max_diff
+            max_diff = max(max_diff, dp[i-1][j] - daily_prices[j])
 
     return dp[max_trades][n-1]
 
-max_trades = 2
-prices = [2000, 4000, 1000]
-print(f"Maximum Profit: NPR {max_profit_trading(max_trades, prices)}")
+if __name__ == "__main__":
+    prices1 = [2000, 4000, 1000]
+    print(f"Example 1 Profit: {max_profit_trading(2, prices1)} NPR")
+
+    prices2 = [1500, 3000, 2000, 5000]
+    print(f"Example 2 Profit: {max_profit_trading(2, prices2)} NPR")

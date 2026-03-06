@@ -4,28 +4,33 @@ class PlantNode:
         self.left = left
         self.right = right
 
-def max_power_generation(root):
-    max_generation = float('-inf')
+class HydropowerOptimizer:
+    def __init__(self):
+        self.max_generation = float('-inf')
 
-    def calculate_gain(node):
-        nonlocal max_generation
-        if not node:
-            return 0
-        
-        left_gain = max(calculate_gain(node.left), 0)
-        right_gain = max(calculate_gain(node.right), 0)
+    def calculate_max_power(self, root):
+        def dfs(node):
+            if not node:
+                return 0
+            
+            left_gain = max(dfs(node.left), 0)
+            right_gain = max(dfs(node.right), 0)
+            current_path_sum = node.val + left_gain + right_gain
+            self.max_generation = max(self.max_generation, current_path_sum)
+            return node.val + max(left_gain, right_gain)
 
-        current_path_sum = node.val + left_gain + right_gain
-        max_generation = max(max_generation, current_path_sum)
-        return node.val + max(left_gain, right_gain)
+        self.max_generation = float('-inf')
+        dfs(root)
+        return self.max_generation
 
-    calculate_gain(root)
-    return max_generation
+optimizer = HydropowerOptimizer()
 
-root_ex2 = PlantNode(-10)
-root_ex2.left = PlantNode(9)
-root_ex2.right = PlantNode(20)
-root_ex2.right.left = PlantNode(15)
-root_ex2.right.right = PlantNode(7)
+# Basic cascade
+ex1_root = PlantNode(1, PlantNode(2), PlantNode(3))
+print(f"Example 1 Output: {optimizer.calculate_max_power(ex1_root)}")
 
-print(f"Maximum net power generation: {max_power_generation(root_ex2)}")
+# Complex cascade
+ex2_root = PlantNode(-10)
+ex2_root.left = PlantNode(9)
+ex2_root.right = PlantNode(20, PlantNode(15), PlantNode(7))
+print(f"Example 2 Output: {optimizer.calculate_max_power(ex2_root)}")
